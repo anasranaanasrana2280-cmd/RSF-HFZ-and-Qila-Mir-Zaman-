@@ -1,0 +1,11 @@
+{
+  "name": "Rajput Student Foundation",
+  "short_name": "RSF",
+  "lang": "ur",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b0b0b",
+  "theme_color": "#0b0b0b"
+}

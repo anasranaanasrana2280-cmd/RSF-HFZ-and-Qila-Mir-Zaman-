@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111111"><meta name="description" content="Rajput Student Foundation — اتحاد، تعلیم، بھائی چارہ، خدمت"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><title>Rajput Student Foundation</title>
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{--gold:#d8b45a;--bg:#101010;--panel:#1b1b1b;--muted:#aaa}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#f6f1e5;font-family:Arial,sans-serif}
+header{padding:22px 16px;background:linear-gradient(135deg,#090909,#282015);border-bottom:1px solid #80652d;text-align:center}
+.logo{width:70px;height:70px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;margin:auto;color:var(--gold);font-weight:bold;font-size:22px}
+h1{font-size:21px;color:var(--gold);margin:12px 0 5px}.tag{color:#ddd;font-size:13px}
+nav{display:flex;gap:7px;overflow:auto;padding:10px;background:#151515;position:sticky;top:0}
+nav button,.btn{background:#292318;color:var(--gold);border:1px solid #80652d;border-radius:9px;padding:10px 13px;white-space:nowrap}
+main{padding:14px;max-width:850px;margin:auto}.card{background:var(--panel);border:1px solid #45391f;border-radius:14px;padding:15px;margin:12px 0}
+h2{color:var(--gold);font-size:18px;margin:0 0 12px}p{line-height:1.7}.muted{color:var(--muted);font-size:13px}
+input,textarea,select{width:100%;padding:12px;margin:6px 0 12px;background:#111;color:white;border:1px solid #514326;border-radius:8px}
+button{cursor:pointer}.btn{display:inline-block;margin:4px 0}.gold{color:var(--gold)}.hidden{display:none}
+.member{display:flex;gap:12px;align-items:center;border-bottom:1px solid #333;padding:10px 0}
+.avatar{width:48px;height:48px;border-radius:50%;background:#342b19;color:var(--gold);display:grid;place-items:center;border:1px solid var(--gold)}
+.badge{font-size:11px;color:#111;background:var(--gold);padding:4px 8px;border-radius:20px}
+footer{text-align:center;color:#888;padding:25px;font-size:12px}
+</style></head>
+<body>
+<header><div class="logo">RSF</div><h1>RAJPUT STUDENT FOUNDATION</h1><div class="tag">اتحاد • تعلیم • بھائی چارہ • خدمت</div></header>
+<nav>
+<button onclick="show('home')">ہوم</button><button onclick="show('register')">رجسٹریشن</button><button onclick="show('members')">ممبرز</button><button onclick="show('groups')">گروپس</button><button onclick="show('news')">نیوز</button><button onclick="show('admin')">ایڈمن</button>
+</nav>
+<main>
+<section id="home">
+<div class="card"><h2>RSF فیملی میں خوش آمدید</h2><p>ہمارا مقصد نوجوان نسل کی تعلیم و تربیت، بھائی چارہ، صلح رحمی اور منشیات کے خلاف شعور بیدار کرنا ہے۔</p><p class="gold"><b>بانی: رانا عثمان مرحوم — منگٹ نیچا</b><br><b>صدر: رانا نعمان — منگٹ نیچا</b></p><p>RSF Hafizabad اور RSF Qila Mir Zaman</p></div>
+<div class="card"><h2>آج کا پیغام</h2><p id="daily">بھائی چارہ قائم رکھیں، اختلاف کو دشمنی نہ بننے دیں، اور نوجوانوں کو تعلیم اور صحت مند سرگرمیوں کی طرف لائیں۔</p><div class="muted">روزانہ صبح 9 بجے کا خودکار پیغام اس ڈیمو میں صرف نمونے کے طور پر دکھایا گیا ہے۔</div></div>
+<div class="card"><h2>اہم اعلان</h2><p>نئے ممبرز کی درخواستیں ایڈمن کی منظوری کے بعد قبول ہوں گی۔</p></div>
+</section>
+<section id="register" class="hidden"><div class="card"><h2>ممبر رجسٹریشن</h2><form id="regForm"><label>پورا نام</label><input id="name" required><label>شہر / علاقہ</label><input id="city" required><label>عہدہ (اگر ہو)</label><input id="role"><label>رابطہ نمبر</label><input id="phone" type="tel"><label>مختصر تعارف</label><textarea id="bio"></textarea><button class="btn" type="submit">درخواست جمع کریں</button></form><p class="muted">یہ ڈیمو درخواست اسی براؤزر میں محفوظ ہوتی ہے، حقیقی سرور پر نہیں۔</p></div></section>
+<section id="members" class="hidden"><div class="card"><h2>منظور شدہ ممبرز</h2><div id="memberList"></div></div></section>
+<section id="groups" class="hidden"><div class="card"><h2>RSF Hafizabad</h2><p>گروپ تعارف اور اعلانات</p><div id="hafizMsgs"></div><textarea id="hafizText" placeholder="پیغام لکھیں"></textarea><button class="btn" onclick="postMsg('hafiz')">پیغام پوسٹ کریں</button></div><div class="card"><h2>RSF Qila Mir Zaman</h2><div id="qilaMsgs"></div><textarea id="qilaText" placeholder="پیغام لکھیں"></textarea><button class="btn" onclick="postMsg('qila')">پیغام پوسٹ کریں</button></div><p class="muted">گروپ چیٹ فی الحال اسی ڈیوائس کے ڈیمو ڈیٹا میں کام کرتی ہے۔</p></section>
+<section id="news" class="hidden"><div class="card"><h2>RSF نیوز اور اپ ڈیٹس</h2><div id="newsList"><p>یہاں RSF کی میٹنگز، تقریبات اور سرگرمیوں کی خبریں شائع ہوں گی۔</p></div></div></section>
+<section id="admin" class="hidden"><div class="card"><h2>ایڈمن پینل — ڈیمو</h2><p class="muted">نمونہ پاس کوڈ: RSF123 (حقیقی ایپ میں محفوظ لاگ اِن لازمی ہوگا)</p><input id="adminPass" type="password" placeholder="ایڈمن پاس کوڈ"><button class="btn" onclick="adminLogin()">لاگ اِن</button><div id="pending"></div><hr><h2>نیوز شامل کریں</h2><input id="newsTitle" placeholder="خبر کی سرخی"><textarea id="newsBody" placeholder="خبر کی تفصیل"></textarea><button class="btn" onclick="addNews()">خبر شائع کریں</button></div></section>
+</main><footer>© Rajput Student Foundation • RSF</footer>
+<script>
+const get=(k,d=[])=>JSON.parse(localStorage.getItem(k)||JSON.stringify(d));const put=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+function show(id){document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');if(id==='members')renderMembers();if(id==='groups')renderMsgs();if(id==='admin')renderPending()}
+document.getElementById('regForm').addEventListener('submit',e=>{e.preventDefault();const f=e.currentTarget;let a=get('pending');a.push({id:Date.now(),name:f.querySelector('#name').value,city:f.querySelector('#city').value,role:f.querySelector('#role').value,phone:f.querySelector('#phone').value,bio:f.querySelector('#bio').value});put('pending',a);f.reset();alert('آپ کی درخواست جمع ہوگئی۔ ایڈمن کی منظوری کا انتظار کریں۔')});
+function renderMembers(){let a=get('approved');memberList.innerHTML=a.length?a.map(m=>`<div class="member"><div class="avatar">${m.name.slice(0,1)}</div><div><b>${m.name}</b><div class="muted">${m.city} • ${m.role||'ممبر'}</div><div class="muted">${m.showPhone?m.phone:'رابطہ نمبر پوشیدہ'}</div></div></div>`).join(''):'<p>ابھی کوئی منظور شدہ ممبر موجود نہیں۔</p>'}
+function adminLogin(){if(adminPass.value==='RSF123'){document.getElementById('pending').classList.remove('hidden');renderPending()}else alert('غلط پاس کوڈ')}
+function renderPending(){let a=get('pending');pending.innerHTML='<h2>نئی درخواستیں</h2>'+(a.length?a.map(m=>`<div class="card"><b>${m.name}</b><p>${m.city} • ${m.role||'ممبر'}<br>${m.phone}</p><button class="btn" onclick="approve(${m.id})">منظور کریں</button><button class="btn" onclick="reject(${m.id})">رد کریں</button></div>`).join(''):'<p>کوئی زیرِ التوا درخواست نہیں۔</p>')}
+function approve(id){let p=get('pending'),m=p.find(x=>x.id===id);if(!m)return;let a=get('approved');a.push({...m,showPhone:false});put('approved',a);put('pending',p.filter(x=>x.id!==id));renderPending()}
+function reject(id){put('pending',get('pending').filter(x=>x.id!==id));renderPending()}
+function postMsg(g){let el=document.getElementById(g==='hafiz'?'hafizText':'qilaText');if(!el.value.trim())return;let a=get('msgs');a.push({g,text:el.value,at:new Date().toLocaleString()});put('msgs',a);el.value='';renderMsgs()}
+function renderMsgs(){let a=get('msgs');['hafiz','qila'].forEach(g=>document.getElementById(g+'Msgs').innerHTML=a.filter(x=>x.g===g).map(x=>`<div class="card">${x.text}<div class="muted">${x.at}</div></div>`).join('')||'<p class="muted">ابھی کوئی پیغام نہیں۔</p>')}
+function addNews(){if(!newsTitle.value.trim())return;let a=get('news');a.unshift({title:newsTitle.value,body:newsBody.value});put('news',a);newsTitle.value='';newsBody.value='';renderNews();alert('خبر شامل ہوگئی')}
+function renderNews(){let a=get('news');newsList.innerHTML=a.map(n=>`<div class="card"><h2>${n.title}</h2><p>${n.body}</p></div>`).join('')||'<p>ابھی کوئی خبر نہیں۔</p>'}renderNews();
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
+</script></body></html>
